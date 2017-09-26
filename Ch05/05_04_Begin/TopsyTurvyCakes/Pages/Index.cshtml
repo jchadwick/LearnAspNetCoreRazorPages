@@ -1,0 +1,23 @@
+﻿@page
+@{ 
+    var recipes = await RecipesService.GetAllAsync();
+}
+
+@section Title {
+<h2 class="title">My Favorite Recipes</h2>
+<a asp-page="/Admin/AddEditRecipe" class="add-recipe btn btn-primary">Add Recipe</a>
+}
+
+
+<div class="row recipes">
+
+    @foreach (var recipe in recipes)
+    {
+        <div class="recipe col-md-4">
+            <img class="img img-thumbnail" src="@recipe.GetInlineImageSrc()" />
+            <h3><a asp-page="/Recipe" asp-route-id="@recipe.Id">@recipe.Name</a></h3>
+            <p>@recipe.Description</p>
+        </div>
+    }
+
+</div>

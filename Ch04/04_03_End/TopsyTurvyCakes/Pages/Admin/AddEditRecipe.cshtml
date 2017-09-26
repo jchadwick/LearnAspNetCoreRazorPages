@@ -1,0 +1,7 @@
+﻿@page "{id?}"
+@model AddEditRecipeModel
+@{
+    ViewData["Title"] = Model.IsNewRecipe ? "New Recipe" : "Edit Recipe";
+}
+
+<strong>Id: @Model.Id</strong>

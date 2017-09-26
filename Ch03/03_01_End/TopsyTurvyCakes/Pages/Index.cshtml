@@ -1,0 +1,21 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using TopsyTurvyCakes.Models
+@{ 
+    Layout = "_Layout";
+    var recipesService = new RecipesService();
+    var recipes = await recipesService.GetAllAsync();
+}
+
+<div class="row recipes">
+
+    @foreach (var recipe in recipes)
+    {
+        <div class="recipe col-md-4">
+            <img class="img img-thumbnail" src="@recipe.GetInlineImageSrc()" />
+            <h3><a asp-page="/Recipe" asp-route-id="@recipe.Id">@recipe.Name</a></h3>
+            <p>@recipe.Description</p>
+        </div>
+    }
+
+</div>
